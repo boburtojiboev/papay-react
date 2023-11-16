@@ -7,6 +7,7 @@ import Typography from "@mui/joy/Typography";
 import { CssVarsProvider } from "@mui/joy/styles";
 import { Box, Container, Stack } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import LocationOnRounded from "@mui/icons-material/LocationOnRounded";
 import React from "react";
 
 export function TopRestaurants() {
@@ -40,10 +41,13 @@ export function TopRestaurants() {
                   }}
                 />
                 <CardContent sx={{ justifyContent: "flex-end" }}>
-                  <Typography level="title-lg" textColor="#fff">
+                  <Typography level="h2" fontSize="lg" textColor="#fff">
                     Texas De Brazil
                   </Typography>
-                  <Typography textColor="neutral.300">
+                  <Typography
+                    startDecorator={<LocationOnRounded />}
+                    textColor="neutral.300"
+                  >
                     Tashkent, Yunus Abad 4-1
                   </Typography>
                 </CardContent>
@@ -88,6 +92,7 @@ export function TopRestaurants() {
                   </Typography>
                   <Box sx={{ width: 2, bgcolor: "divider" }}></Box>
                   <Typography
+                    level="body-sm"
                     sx={{
                       fontSize: "md",
                       color: "neutral.300",
@@ -119,13 +124,17 @@ export function TopRestaurants() {
                   }}
                 />
                 <CardContent sx={{ justifyContent: "flex-end" }}>
-                  <Typography level="title-lg" textColor="#fff">
+                  <Typography level="h2" fontSize="lg" textColor="#fff">
                     Texas De Brazil
                   </Typography>
-                  <Typography textColor="neutral.300">
-                    Tashkent, Kuyluk 5-1
+                  <Typography
+                    startDecorator={<LocationOnRounded />}
+                    textColor="neutral.300"
+                  >
+                    Tashkent, Yunus Abad 4-1
                   </Typography>
                 </CardContent>
+
                 <CardOverflow
                   sx={{
                     display: "flex",
@@ -166,6 +175,7 @@ export function TopRestaurants() {
                   </Typography>
                   <Box sx={{ width: 2, bgcolor: "divider" }}></Box>
                   <Typography
+                    level="body-sm"
                     sx={{
                       fontSize: "md",
                       color: "neutral.300",
@@ -197,13 +207,17 @@ export function TopRestaurants() {
                   }}
                 />
                 <CardContent sx={{ justifyContent: "flex-end" }}>
-                  <Typography level="title-lg" textColor="#fff">
+                  <Typography level="h2" fontSize="lg" textColor="#fff">
                     Texas De Brazil
                   </Typography>
-                  <Typography textColor="neutral.300">
-                    Tashkent, Kuyluk 5-1
+                  <Typography
+                    startDecorator={<LocationOnRounded />}
+                    textColor="neutral.300"
+                  >
+                    Tashkent, Yunus Abad 4-1
                   </Typography>
                 </CardContent>
+
                 <CardOverflow
                   sx={{
                     display: "flex",
@@ -244,6 +258,7 @@ export function TopRestaurants() {
                   </Typography>
                   <Box sx={{ width: 2, bgcolor: "divider" }}></Box>
                   <Typography
+                    level="body-sm"
                     sx={{
                       fontSize: "md",
                       color: "neutral.300",
@@ -275,13 +290,17 @@ export function TopRestaurants() {
                   }}
                 />
                 <CardContent sx={{ justifyContent: "flex-end" }}>
-                  <Typography level="title-lg" textColor="#fff">
+                  <Typography level="h2" fontSize="lg" textColor="#fff">
                     Texas De Brazil
                   </Typography>
-                  <Typography textColor="neutral.300">
-                    Tashkent, Kuyluk 5-1
+                  <Typography
+                    startDecorator={<LocationOnRounded />}
+                    textColor="neutral.300"
+                  >
+                    Tashkent, Yunus Abad 4-1
                   </Typography>
                 </CardContent>
+
                 <CardOverflow
                   sx={{
                     display: "flex",
@@ -322,6 +341,7 @@ export function TopRestaurants() {
                   </Typography>
                   <Box sx={{ width: 2, bgcolor: "divider" }}></Box>
                   <Typography
+                    level="body-sm"
                     sx={{
                       fontSize: "md",
                       color: "neutral.300",
