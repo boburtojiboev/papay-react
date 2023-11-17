@@ -21,55 +21,61 @@
 }
 
 .homepage .static_box {
-    width: 191px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .homepage .static_box .static_num {
-    /* width: 81.08px;
+  width: 191px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage .static_box .static_num {
+  /* width: 81.08px;
     height: 80px; */
-    
-    font-family: "Poppins";
-    text-align: center;
-    font-size: 54px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 81px;
 
-    color: #fff;
-  
-  }
-  
-  .homepage .static_text {
-    width: 191.351px;
-    height: 30px;
-    font-family: "Poppins";
-    text-align: center;
-    font-weight: 500;
-    font-size: 20px;
-    font-style: normal;
-    line-height: 30px; 
-    
-    color: #e3c08d;
-  }
+  font-family: "Poppins";
+  text-align: center;
+  font-size: 54px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 81px;
 
-  .homepage .top_restaurant_frame {
-    width: 100%;
-    height: 605px;
-    display: flex;
-    background: #0b0e11;
-  }
-  
-  .top_restaurant_frame .category_title {
-    font-family: "Roboto";
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 42px;
+  color: #fff;
+}
 
-    color: #e3c08d;
-  }
+.homepage .static_text {
+  width: 191.351px;
+  height: 30px;
+  font-family: "Poppins";
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  font-style: normal;
+  line-height: 30px;
+
+  color: #e3c08d;
+}
+
+.homepage .top_restaurant_frame {
+  width: 100%;
+  height: 605px;
+  display: flex;
+  background: #0b0e11;
+}
+
+.homepage .category_title {
+  font-family: "Roboto";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 42px;
+
+  color: #e3c08d;
+}
+
+.homepage .best_restaurant_frame {
+  width: 100%;
+  height: 755px;
+  display: flex;
+  background: #0b0e11;
+}
