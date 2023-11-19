@@ -4,11 +4,15 @@
     height: auto;
     background: #0b0e11;
 }
+
+/* ALL RESTAURANT */
+
 .restaurant_page .all_restaurant .fit_search_box {
     position: relative;
     width: 100%;
     height: 33px;
     margin-top: 50px;
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -27,15 +31,20 @@
   
   .restaurant_page .all_restaurant .fit_box a {
     position: relative;
-    display: inline-block;
-    overflow: hidden;
-  
+    
+    display: flex;
     font-family: "Quicksand";
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 25px;
     color: #fff;
+  } 
+
+  .restaurant_page .all_restaurant .fit_box a {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
   }
   
   .restaurant_page .all_restaurant .fit_box a::before,
@@ -94,6 +103,7 @@
     position: relative;
     width: 360px;
     height: 33px;
+
     display: flex;
     align-items: center;
     background: #ffffcf;
@@ -117,6 +127,7 @@
     width: 245px;
     height: 29px;
     margin-left: 10px;
+
     display: flex;
     border: none;
     border-radius: 10px 0px 0px 10px;
@@ -143,10 +154,12 @@
     width: 1305px;
     height: auto;
     margin-top: 70px;
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
   }
+
   .restaurant_page .all_restaurant .restaurant_box {
     margin: 13px;
     padding: 5px;
@@ -161,11 +174,20 @@
     border: 1px solid #ededed;
     border-radius: 8px;
   }
+
   .restaurant_page .all_restaurant .restaurant_img {
     width: 280px;
     height: 330px;
+
     border-radius: 5px;
     background-size: cover;
+  }
+
+  .restaurant_page .all_restaurant .restaurant_desc {
+    width: 280px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
   }
 
   .restaurant_page .all_restaurant .restaurant_title_text {
@@ -184,13 +206,9 @@
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    color: #4f547b;
   }
 
-  
   .restaurant_page .all_restaurant .bottom_box {
     position: relative;
     width: 100%;
@@ -209,3 +227,13 @@
   .restaurant_page .all_restaurant .bottom_box .line_img_right {
     transform: matrix(-1, 0, 0, -1, 0, 0);
   }
+/* ****single res css */
+  .restaurant_page .single_restaurant {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background: #0b0e11;
+
+  }
+
