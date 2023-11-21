@@ -171,6 +171,7 @@ export function OneRestaurant() {
                         <Badge badgeContent={1000} color={"primary"}>
                           <Checkbox
                             icon={<RemoveRedEye style={{ color: "white" }} />}
+                            checked={false}
                           />
                         </Badge>
                       </Button>
