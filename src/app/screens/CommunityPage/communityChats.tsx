@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Avatar, Box, Stack } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import "../../../css/community.css";
 
-const [massagesList, setMassagesList] = useState({});
+// const [massagesList, setMassagesList] = useState({});
 
 export function CommunityChats() {
   return (
