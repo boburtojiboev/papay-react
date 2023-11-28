@@ -6,6 +6,7 @@ import { Facebook, Instagram, Telegram, YouTube } from "@mui/icons-material";
 import { MemberPosts } from "./memberPosts";
 import { MemberFollowers } from "./memberFollowers";
 import { MemberFollowing } from "./memberFollowing";
+import TViewer from "../../components/tuiEditor/TViever";
 
 export function VisitorOtherPage(props: any) {
   //****Initializations ****//
@@ -44,7 +45,9 @@ export function VisitorOtherPage(props: any) {
 
                 <TabPanel value={"4"}>
                   <Box className="menu_name">Tanlangan Maqola</Box>
-                  <Box className="menu_content"></Box>
+                  <Box className="menu_content">
+                  <TViewer text={`<h3>Hello to Otherpage</h3>`}/>
+                  </Box>
                 </TabPanel>
               </Box>
             </Stack>
