@@ -74,10 +74,10 @@ export function HelpPage() {
     `Shaxsiy reklamalarni adminning ruxsatisiz yozish va tarqatish mumkun emas.`,
     `Maqolalaringiz odob doirasidan chiqib ketmasligi shart.`,
     `Barcha xarakatlaringiz adminlarimiz nazorati ostida bo'lani sabab iltimos talablarimizni xurmat qiling.`,
-    "Har qanday shikoyat bolsa adminlarimizga bog'laning!",
-    "Iltimos hurmatli foydalanuvchialr bir-biringizga hurmatda bo'ling!",
-    "Web sahifammiz copyrightga ega!",
-    "Bu web sahifammiz manzur bo'lgan bo'lsa yaqinlarigizga ulashib qo'ysangiz samimiy xursand bo'lamiz!",
+    `Har qanday shikoyat bolsa adminlarimizga bog'laning!`,
+    `Iltimos hurmatli foydalanuvchialr bir-biringizga hurmatda bo'ling!`,
+    `Web sahifammiz copyrightga ega!`,
+    `Bu web sahifammiz manzur bo'lgan bo'lsa yaqinlarigizga ulashib qo'ysangiz samimiy xursand bo'lamiz!`,
   ];
 
   // Handlers//
