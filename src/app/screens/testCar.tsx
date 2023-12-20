@@ -21,7 +21,7 @@ class Car extends Component {
   }
 
   componentWillUnmount() {
-    console.log("run componentDidUnmound");
+    console.log("run componentWillUnmound");
     // run after component anmound
   }
 
