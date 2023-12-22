@@ -12,12 +12,10 @@ import "../../../css/home.css";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
 import {
   setBestRestaurants,
   setTopRestaurants,
 } from "../../screens/HomePage/slice";
-import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
 import { Restaurant } from "../../../types/user";
 import RestaurantApiService from "../../apiServices/restaurantApiService";
 
