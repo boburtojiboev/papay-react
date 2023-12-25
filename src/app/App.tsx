@@ -19,17 +19,38 @@ import Car from "./screens/testCar";
 import AuthentificationModal from "./auth";
 
 function App() {
+  // INITIALIZATIONS
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
+  const [signupOpen, setSignupOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  /** HANDLERS */
+
+  const handleSignupOpen = () => setSignupOpen(true);
+  const handleSignupClose = () => setSignupOpen(false);
+
+  const handleLoginOpen = () => setLoginOpen(true);
+
+  const handleLoginClose = () => setLoginOpen(false);
 
   return (
     <Router>
       {main_path == "/" ? (
-        <NavbarHome setPath={setPath} />
+        <NavbarHome setPath={setPath}
+        handleSignupOpen={handleSignupOpen}
+        handleLoginOpen={handleLoginOpen}
+      />
       ) : main_path.includes("/restaurant") ? (
-        <NavbarRestaurant setPath={setPath} />
+        <NavbarRestaurant setPath={setPath}
+        handleSignupOpen={handleSignupOpen}
+        handleLoginOpen={handleLoginOpen}
+      />
       ) : (
-        <NavbarOthers setPath={setPath} />
+        <NavbarOthers setPath={setPath}
+        handleSignupOpen={handleSignupOpen}
+        handleLoginOpen={handleLoginOpen}
+      />
       )}
 
       <Switch>
@@ -57,8 +78,15 @@ function App() {
       </Switch>
 
       <Footer />
-      
-      <AuthentificationModal />
+
+      <AuthentificationModal
+        loginOpen={loginOpen}
+        handleLoginOpen={handleLoginOpen}
+        handleLoginClose={handleLoginClose}
+        signupOpen={signupOpen}
+        handleSignupOpen={handleSignupOpen}
+        handleSignupClose={handleSignupClose}
+      />
     </Router>
   );
 }

@@ -28,7 +28,7 @@ const bestRestaurantsRetriever = createSelector(
 );
 
 export function BestRestaurants() {
-  // Initialization
+  // INITIALIZATIONS
   const { bestRestaurants } = useSelector(bestRestaurantsRetriever);
 
   console.log("bestRestaurants:::", bestRestaurants);

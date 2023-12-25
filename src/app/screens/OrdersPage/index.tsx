@@ -12,7 +12,7 @@ import PausedOrders from "../../components/orders/pausedOrders";
 import Marginer from "../../components/marginer";
 
 export function OrdersPage() {
-  /** INITIALIZATION **/
+  /** INITIALIZATIONS **/
   const [value, setValue] = useState("1");
 
   /** HANDLERS *****/

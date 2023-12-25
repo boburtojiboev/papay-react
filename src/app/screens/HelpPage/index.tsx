@@ -17,7 +17,7 @@ import "../../../css/help.css";
 import Marginer from "../../components/marginer";
 
 export function HelpPage() {
-  // Initializations//
+  // INITIALIZATIONS//
   const [value, setValue] = React.useState("1");
   const faq = [
     {
