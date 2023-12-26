@@ -6,10 +6,10 @@ import Fade from "@material-ui/core/Fade";
 import { TextField, Stack, Fab } from "@mui/material";
 import styled from "styled-components";
 import { Login } from "@mui/icons-material";
-import { sweetErrorHandling } from "../../lib/sweetAlert";
+import { sweetErrorHandling } from "../../../lib/sweetAlert";
 import assert from "assert";
-import { Definer } from "../../lib/Definer";
-import MemberApiService from "../apiServices/memberApiService";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -54,7 +54,7 @@ export default function AuthentificationModal(props: any) {
 
   const handleSignupRequest = async () => {
     try {
-      const is_fullfilled = mb_nick != "" && mb_password != "" && mb_phone != 0;
+      const is_fullfilled = mb_nick !== "" && mb_password !== "" && mb_phone !== 0;
       assert.ok(is_fullfilled, Definer.input_err1);
 
       const sign_data = {
@@ -75,7 +75,7 @@ export default function AuthentificationModal(props: any) {
   };
   const handleLoginRequest = async () => {
     try {
-      const is_fullfilled = mb_nick != "" && mb_password != "";
+      const is_fullfilled = mb_nick !== "" && mb_password !== "";
       assert.ok(is_fullfilled, Definer.input_err1);
 
       const login_data = {
