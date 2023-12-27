@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   CardOverflow,
@@ -11,20 +11,42 @@ import {
 import { Box, Button, Container, Stack } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
-
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-
 import { Call, Favorite, LocationOnRounded, Search } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTargetRestaurants } from "../../screens/RestaurantPage/selector";
+import { Restaurant } from "../../../types/user";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTargetRestaurants } from "../../screens/RestaurantPage/slice";
 
 const order_list = Array.from(Array(8).keys());
-console.log(order_list);
+
+// REDUX SLICE
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTargetRestaurants: (data: Restaurant[]) =>
+    dispatch(setTargetRestaurants(data)),
+});
+// REDUX SELECTOR
+const targetRestaurantsRetriever = createSelector(
+  retrieveTargetRestaurants,
+  (targetRestaurants) => ({
+    targetRestaurants,
+  })
+);
+
+
 
 export function AllRestaurants() {
+  // INITIALIZATIONS
+  const { setTargetRestaurants } = actionDispatch(useDispatch());
+  const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
   return (
-  <div className="all_restaurant">
-    <Container>
+    <div className="all_restaurant">
+      <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className={"fit_search_box"}>
             <Box className={"fit_box"}>
@@ -139,7 +161,7 @@ export function AllRestaurants() {
                       </Typography>
                       <Box sx={{ width: 2, bgcolor: "divider" }}></Box>
                       <Typography
-                      level="body-sm"
+                        level="body-sm"
                         sx={{
                           fontSize: "md",
                           color: "text.secondary",
@@ -186,6 +208,6 @@ export function AllRestaurants() {
           </Stack>
         </Stack>
       </Container>
-  </div>
+    </div>
   );
 }
