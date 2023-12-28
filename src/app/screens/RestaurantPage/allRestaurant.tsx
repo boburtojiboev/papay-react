@@ -15,15 +15,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Call, Favorite, LocationOnRounded, Search } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-// REDUX
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import { retrieveTargetRestaurants } from "../../screens/RestaurantPage/selector";
-import { Restaurant } from "../../../types/user";
-import { Dispatch } from "@reduxjs/toolkit";
-import { setTargetRestaurants } from "../../screens/RestaurantPage/slice";
-import RestaurantApiService from "../../apiServices/restaurantApiService";
-import { SearchObj } from "../../../types/others";
 import { useHistory } from "react-router-dom";
 import { serverApi } from "../../../lib/config";
 import assert from "assert";
@@ -33,6 +24,16 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import RestaurantApiService from "../../apiServices/restaurantApiService";
+import { SearchObj } from "../../../types/others";
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTargetRestaurants } from "../../screens/RestaurantPage/selector";
+import { Restaurant } from "../../../types/user";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTargetRestaurants } from "../../screens/RestaurantPage/slice";
+
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -57,7 +58,7 @@ export function AllRestaurants() {
     order: "mb_point",
   });
   const refs: any = useRef([]);
-  // const history = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
     const restaurantService = new RestaurantApiService();
@@ -68,6 +69,10 @@ export function AllRestaurants() {
   }, [targetSearchObject]);
 
   /** HANDLERS */
+  const chosenRestaurantHandler = (id: string) => {
+    history.push(`/restaurant/${id}`);
+  };
+
   const searchHandler = (category: string) => {
     targetSearchObject.page = 1;
     targetSearchObject.order = category;
@@ -140,6 +145,7 @@ export function AllRestaurants() {
                 const image_path = `${serverApi}/${ele.mb_image}`;
                 return (
                   <Card
+                  onClick={() => chosenRestaurantHandler(ele._id)}
                     variant="outlined"
                     sx={{
                       minHeight: 410,
