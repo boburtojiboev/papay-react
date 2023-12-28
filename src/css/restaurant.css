@@ -286,6 +286,8 @@
   position: relative;
   width: 360px;
   height: 33px;
+  margin-left: 90px;
+  
 
   display: flex;
   align-items: center;

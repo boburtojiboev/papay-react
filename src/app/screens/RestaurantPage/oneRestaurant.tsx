@@ -12,7 +12,7 @@ import {
 } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 // SwiperCore.use([Autoplay, Navigation, Pagination]);
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -33,6 +33,7 @@ import { ProductSearchObj } from "../../../types/others";
 import ProductApiService from "../../apiServices/productApiService";
 import { Product } from "../../../types/product";
 import { serverApi } from "../../../lib/config";
+import RestaurantApiService from "../../apiServices/restaurantApiService";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -65,13 +66,14 @@ const targetRestaurantsRetriever = createSelector(
 
 export function OneRestaurant() {
   // INITIALIZATIONS
+  const history = useHistory();
   let { restaurant_id } = useParams<{ restaurant_id: string }>();
   const { setRandomRestaurants, setChosenRestaurants, setTargetProducts } =
     actionDispatch(useDispatch());
   const { randomRestaurants } = useSelector(randomRestaurantsRetriever);
   const { chosenRestaurants } = useSelector(chosenRestaurantsRetriever);
   const { targetProducts } = useSelector(targetRestaurantsRetriever);
-  const [chosenRestaurantID, steChosenRestaurantID] =
+  const [chosenRestaurantId, setChosenRestaurantId] =
     useState<string>(restaurant_id);
   const [targetProductSearchObj, setTargetProductSearchObj] =
     useState<ProductSearchObj>({
@@ -83,6 +85,12 @@ export function OneRestaurant() {
     });
 
   useEffect(() => {
+    const restaurantService = new RestaurantApiService();
+    restaurantService
+      .getRestaurants({ page: 1, limit: 10, order: "random" })
+      .then((data) => setRandomRestaurants(data))
+      .catch((err) => console.log(err));
+
     const productService = new ProductApiService();
     productService
       .getTargetProducts(targetProductSearchObj)
@@ -91,13 +99,19 @@ export function OneRestaurant() {
   }, [targetProductSearchObj]);
 
   /** HANDLERS */
+  const chosenRestaurantHandler = (id: string) => {
+    setChosenRestaurantId(id);
+    targetProductSearchObj.restaurant_mb_id = id;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+    history.push(`/restaurant/${id}`);
+  };
   return (
     <div className="single_restaurant">
       <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Stack className={"avatar_big_box"}>
             <Box className={"top_text"}>
-              <p>Texas De Brazil Restaurant</p>
+              <p style={{marginLeft: "10px"}}>Texas De Brazil Restaurant </p>
               <Box className={"Single_search_big_box"}>
                 <form className={"Single_search_form"} action={""} method={""}>
                   <input
@@ -139,18 +153,19 @@ export function OneRestaurant() {
                 prevEl: ".restaurant-prev",
               }}
             >
-              {/* {restaurant_list.map((ele, index) => {
+              {randomRestaurants.map((ele: Restaurant) => {
+                const image_path = `${serverApi}/${ele.mb_image}`
                 return (
-                  <SwiperSlide
+                  <SwiperSlide onClick={() => chosenRestaurantHandler(ele._id)}
                     style={{ cursor: "pointer" }}
-                    key={index}
+                    key={ele._id}
                     className={"restaurant_avatars"}
                   >
-                    <img src="/restaurant/burak.jpeg" alt="" />
-                    <span>Burak</span>
+                    <img src={image_path} alt="" />
+                    <span>{ele.mb_nick}</span>
                   </SwiperSlide>
                 );
-              })} */}
+              })}
             </Swiper>
             <Box
               className="next_btn restaurant-next"
@@ -253,7 +268,10 @@ export function OneRestaurant() {
                         className="like_view_btn"
                         style={{ right: "36px" }}
                       >
-                        <Badge badgeContent={product.product_views} color={"primary"}>
+                        <Badge
+                          badgeContent={product.product_views}
+                          color={"primary"}
+                        >
                           <Checkbox
                             icon={<RemoveRedEye style={{ color: "white" }} />}
                             checked={false}
