@@ -313,8 +313,8 @@ export function OneRestaurant() {
                 const image_path = `${serverApi}/${product.product_images[0]}`;
                 const size_volume =
                   product.product_collection === "drink"
-                    ? product.product_volume + "l"
-                    : product.product_size + "size";
+                    ? product.product_volume + " l"
+                    : product.product_size + " size";
                 return (
                   <Box
                     onClick={() => chosenDishHandler(product?._id)}

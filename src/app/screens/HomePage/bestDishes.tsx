@@ -57,8 +57,8 @@ export function BestDishes() {
               const image_path = `${serverApi}/${product.product_images[0]}`;
               const size_volume =
                 product.product_collection === "drink"
-                  ? product.product_volume + "l"
-                  : product.product_size + "sizi";
+                  ? product.product_volume + " l"
+                  : product.product_size + " sizi";
               return (
                 <Box className="dish_box">
                   <Stack
