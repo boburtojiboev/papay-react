@@ -174,6 +174,9 @@ export function AllRestaurants() {
                           transform: "translateY(50%)",
                           color: "rgba(0,0,0,.4)",
                         }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                       >
                         <Favorite
                           onClick={(e) => targetLikeHandler(e, ele._id)}
@@ -239,6 +242,7 @@ export function AllRestaurants() {
                           display: "flex",
                           alignItems: "center",
                         }}
+                       
                       >
                         <div
                           ref={(element) => (refs.current[ele._id] = element)}

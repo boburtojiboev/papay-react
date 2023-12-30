@@ -893,7 +893,7 @@ restaurant_page .single_restaurant .about_left .about_left_desc {
   margin-top: 20px;
 }
 .chosen_dish_page .bottom_wrap .bottom_img {
-  /* cursor: "pointer"; */
+  cursor: "pointer";
   height: 107px;
   display: flex;
   width: 400px;
