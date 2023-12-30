@@ -12,7 +12,7 @@ export function Basket(props: any) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const { cartItems, onAdd } = props;
+  const { cartItems, onAdd, onRemove, onDelete } = props;
   const itemsPrice = cartItems.reduce(
     (a: any, c: CartItem) => a + c.price * c.quantity,
     0
@@ -90,7 +90,7 @@ export function Basket(props: any) {
               return (
                 <Box className="basket_info_box">
                   <div className="cancel_btn">
-                    <Cancel color="primary" />
+                    <Cancel color="primary" onClick={() => onDelete(item)} />
                   </div>
                   <img
                     src={image_path}
@@ -103,10 +103,7 @@ export function Basket(props: any) {
                   </p>
                   <Box sx={{ minWidth: 120 }}>
                     <div className="col-2">
-                      <button
-                        //   onClick={}
-                        className="remove"
-                      >
+                      <button onClick={() => onRemove(item)} className="remove">
                         -
                       </button>
                       <button onClick={() => onAdd(item)} className="add">
