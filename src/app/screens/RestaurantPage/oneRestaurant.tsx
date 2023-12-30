@@ -14,6 +14,18 @@ import StarIcon from "@mui/icons-material/Star";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import { useHistory, useParams } from "react-router-dom";
 // SwiperCore.use([Autoplay, Navigation, Pagination]);
+import { ProductSearchObj } from "../../../types/others";
+import ProductApiService from "../../apiServices/productApiService";
+import { Product } from "../../../types/product";
+import { serverApi } from "../../../lib/config";
+import RestaurantApiService from "../../apiServices/restaurantApiService";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
@@ -29,18 +41,6 @@ import {
   setChosenRestaurant,
   setTargetProducts,
 } from "../../screens/RestaurantPage/slice";
-import { ProductSearchObj } from "../../../types/others";
-import ProductApiService from "../../apiServices/productApiService";
-import { Product } from "../../../types/product";
-import { serverApi } from "../../../lib/config";
-import RestaurantApiService from "../../apiServices/restaurantApiService";
-import assert from "assert";
-import { Definer } from "../../../lib/Definer";
-import MemberApiService from "../../apiServices/memberApiService";
-import {
-  sweetErrorHandling,
-  sweetTopSmallSuccessAlert,
-} from "../../../lib/sweetAlert";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
