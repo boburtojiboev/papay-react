@@ -72,6 +72,7 @@ export function NavbarHome(props: any) {
               onAdd={props.onAdd}
               onRemove={props.onRemove}
               onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
             />
 
             {!props.verifiedMemberData ? (
