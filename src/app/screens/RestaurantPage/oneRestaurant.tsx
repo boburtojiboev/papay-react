@@ -71,7 +71,7 @@ const targetRestaurantsRetriever = createSelector(
   })
 );
 
-export function OneRestaurant() {
+export function OneRestaurant(props: any) {
   // INITIALIZATIONS
   const history = useHistory();
   let { restaurant_id } = useParams<{ restaurant_id: string }>();
@@ -160,7 +160,9 @@ export function OneRestaurant() {
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Stack className={"avatar_big_box"}>
             <Box className={"top_text"}>
-              <p style={{ marginLeft: "10px" }}>{chosenRestaurant?.mb_nick} Restaurant </p>
+              <p style={{ marginLeft: "10px" }}>
+                {chosenRestaurant?.mb_nick} Restaurant{" "}
+              </p>
               <Box className={"Single_search_big_box"}>
                 <form className={"Single_search_form"} action={""} method={""}>
                   <input
@@ -353,7 +355,13 @@ export function OneRestaurant() {
                           />
                         </Badge>
                       </Button>
-                      <Button className="view_btn">
+                      <Button
+                        className="view_btn"
+                        onClick={(e) => {
+                          props.onAdd(product);
+                          e.stopPropagation();
+                        }}
+                      >
                         <img
                           src="/icons/shopping_cart.svg"
                           style={{ display: "flex" }}

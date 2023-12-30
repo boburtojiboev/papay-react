@@ -42,10 +42,10 @@ export function NavbarRestaurant(props: any) {
             </Box>
             {props.verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/orders" activeClassName="underline">
-                Buyurtma
-              </NavLink>
-            </Box>
+                <NavLink to="/orders" activeClassName="underline">
+                  Buyurtma
+                </NavLink>
+              </Box>
             ) : null}
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/community" activeClassName="underline">
@@ -64,9 +64,9 @@ export function NavbarRestaurant(props: any) {
                 Yordam
               </NavLink>
             </Box>
-           
-            <Basket/>
-            
+
+            <Basket cartItems={props.cartItems} onAdd={props.onAdd} />
+
             {!props.verifiedMemberData ? (
               <Box>
                 <Button
@@ -119,9 +119,7 @@ export function NavbarRestaurant(props: any) {
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-              <MenuItem 
-              onClick={props.handleLogOutRequest}
-              >
+              <MenuItem onClick={props.handleLogOutRequest}>
                 <ListItemIcon>
                   <Logout fontSize="small" style={{ color: "blue" }} />
                 </ListItemIcon>
