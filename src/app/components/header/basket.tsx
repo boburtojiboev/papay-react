@@ -13,7 +13,7 @@ import OrderApiService from "../../apiServices/orderApiService";
 import { useHistory } from "react-router-dom";
 
 export function Basket(props: any) {
-  /** Initialization */
+  // INITIALIZATIONS */
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -27,7 +27,7 @@ export function Basket(props: any) {
   const shippingPrice = itemsPrice > 100 ? 0 : 2;
   const totalPrice = itemsPrice + shippingPrice;
 
-  /** Handlers */
+  // HANDLERS//
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -44,6 +44,7 @@ export function Basket(props: any) {
       onDeleteAll();
       handleClose();
 
+      props.setOrderRebuild(new Date());
       history.push("/orders");
     } catch (err: any) {
       console.log(err);

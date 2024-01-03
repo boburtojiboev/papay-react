@@ -305,7 +305,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 .order_page .total_price_box .boxTotal p {
