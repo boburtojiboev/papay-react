@@ -19,6 +19,7 @@ import {
   setFinishedOrders,
 } from "../../screens/OrdersPage/slice";
 import OrderApiService from "../../apiServices/orderApiService";
+import { Member } from "../../../types/user";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -32,6 +33,7 @@ export function OrdersPage(props: any) {
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
   const [value, setValue] = useState("1");
+  const verifiedMemberData: Member | null = props.verifiedMemberData;
 
   useEffect(() => {
     const orderService = new OrderApiService();
@@ -94,7 +96,7 @@ export function OrdersPage(props: any) {
             >
               <Box className="order_user_img">
                 <img
-                  src="/auth/default_user.svg"
+                  src={verifiedMemberData?.mb_image}
                   className="order_user_avatar"
                 />
                 <Box className="order_user_icon_box">
@@ -104,8 +106,12 @@ export function OrdersPage(props: any) {
                   />
                 </Box>
               </Box>
-              <span className="order_user_name">Simon</span>
-              <span className="order_user_prof">Foydalanuvchi</span>
+              <span className="order_user_name">
+                {verifiedMemberData?.mb_nick}
+              </span>
+              <span className="order_user_prof">
+                {verifiedMemberData?.mb_type ?? "Foydalanuvchi"}
+              </span>
             </Box>
 
             <Box className="order_user_address" marginTop={"8px"}>
@@ -118,7 +124,9 @@ export function OrdersPage(props: any) {
 
               <Box style={{ marginTop: "10px", display: "flex" }}>
                 <LocationOnIcon />
-                <div className="spec_address_txt">Tashkent, Yunus Abad 4-1</div>
+                <div className="spec_address_txt">
+                  {verifiedMemberData?.mb_address ?? "manzil kiritilmagan"}
+                </div>
               </Box>
             </Box>
           </Box>
