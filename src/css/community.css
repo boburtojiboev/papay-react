@@ -182,10 +182,6 @@
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
-/* .community_page .all_article_box:hover {
-    background: #797373;
-  
-} */
 
 .community_page .all_article_box .all_article_img {
   width: 155px;
@@ -201,6 +197,12 @@
   height: 90%;
   display: flex;
   flex-direction: column;
+}
+.community_page .all_article_box .all_article_container img {
+  width: 35px;
+  height: 35px;
+  border-radius: 30px 0px 0px 30px;
+  background: lightgray 50% / cover no-repeat;
 }
 
 .community_page .all_article_box .all_article_author_user {
