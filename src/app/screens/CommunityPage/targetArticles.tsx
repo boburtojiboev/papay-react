@@ -5,8 +5,33 @@ import { FavoriteBorder } from "@mui/icons-material";
 import { BoArticle } from "../../../types/boArticle";
 import { serverApi } from "../../../lib/config";
 import moment from "moment";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
 
 export function TargetArticles(props: any) {
+  // HANDLERS//
+  const targetLikeHandler = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiService();
+      const like_result = await memberService.memberLikeTarget({
+        like_ref_id: e.target.id,
+        group_type: "community",
+      });
+      assert.ok(like_result, Definer.general_err1);
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      props.setArticlesRebuild(new Date());
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
   return (
     <Stack>
       {props.targetBoArticles?.map((article: BoArticle) => {
@@ -61,8 +86,13 @@ export function TargetArticles(props: any) {
                       icon={<FavoriteBorder />}
                       checkedIcon={<Favorite style={{ color: "red" }} />}
                       id={article?._id}
+                      onClick={targetLikeHandler}
                       /*@ts-ignore*/
-                      checked={false}
+                      checked={
+                        article?.me_liked && article.me_liked[0]?.my_favorite
+                          ? true
+                          : false
+                      }
                     />
                     <span style={{ margin: "0px 25px 0px 0px" }}>
                       {article?.art_likes}

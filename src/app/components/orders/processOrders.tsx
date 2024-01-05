@@ -9,7 +9,10 @@ import { Order } from "../../../types/order";
 import { Product } from "../../../types/product";
 import { serverApi } from "../../../lib/config";
 import moment from "moment";
-import { sweetErrorHandling, sweetFailureProvider } from "../../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../lib/sweetAlert";
 import OrderApiService from "../../apiServices/orderApiService";
 
 // REDUX SELECTOR
@@ -40,7 +43,7 @@ export default function ProcessOrders(props: any) {
       if (confirmation) {
         const orderService = new OrderApiService();
         await orderService.updateOrdersStatus(data);
-        props.setOrderRebuild(new Date())
+        props.setOrderRebuild(new Date());
       }
     } catch (err) {
       console.log("finishOrderHandler, ERROR:", err);
@@ -92,8 +95,8 @@ export default function ProcessOrders(props: any) {
                   {moment(order.createdAt).format("YY-MM-DD HH:mm")}
                 </p>
                 <Button
-                 value={order._id}
-                 onClick={finishOrderHandler}
+                  value={order._id}
+                  onClick={finishOrderHandler}
                   variant="contained"
                   sx={{
                     background: "rgb(2, 136, 209)",
