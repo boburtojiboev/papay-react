@@ -24,11 +24,64 @@ import { MemberFollowing } from "./memberFollowing";
 import { MySettings } from "./mySettings";
 import { TuiEditor } from "../../components/tuiEditor/TuiEditor";
 import TViewer from "../../components/tuiEditor/TViever";
+import { Member } from "../../../types/user";
+import { BoArticle } from "../../../types/boArticle";
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import {
+  retrieveChosenMember,
+  retrieveChosenMemberBoArticles,
+  retrieveChosenSingleBoArticle,
+} from "../../screens/MemberPage/selector";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setChosenMember,
+  setChosenMemberBoArticles,
+  setChosenSingleBoArticle,
+} from "../../screens/MemberPage/slice";
+
+// REDUX SLICE
+const actionDispatch = (dispatch: Dispatch) => ({
+  setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
+  setChosenMemberBoArticles: (data: BoArticle[]) =>
+    dispatch(setChosenMemberBoArticles(data)),
+  setChosenSingleBoArticle: (data: BoArticle) =>
+    dispatch(setChosenSingleBoArticle(data)),
+});
+
+// REDUX SELECTOR
+const chosenMemberRetriever = createSelector(
+  retrieveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+const chosenMemberBoArticlesRetriever = createSelector(
+  retrieveChosenMemberBoArticles,
+  (chosenMemberBoArticles) => ({
+    chosenMemberBoArticles,
+  })
+);
+const chosenSingleBoArticleRetriever = createSelector(
+  retrieveChosenSingleBoArticle,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle,
+  })
+);
 
 export function VisitMyPage(props: any) {
-  // Initialize//
+  //** INITIALIZATIONS **//
+  const {
+    setChosenMember,
+    setChosenMemberBoArticles,
+    setChosenSingleBoArticle,
+  } = actionDispatch(useDispatch());
+  const { chosenMember } = useSelector(chosenMemberRetriever);
+  const { chosenMemberBoArticles } = useSelector(chosenMemberBoArticlesRetriever);
+  const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
   const [value, setValue] = React.useState("1");
-  // Handlers//
+  //** HANDLERS **//
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -86,14 +139,14 @@ export function VisitMyPage(props: any) {
                 <TabPanel value={"4"}>
                   <Box className="menu_name">Maqola Yozish</Box>
                   <Box className="write_content">
-                    <TuiEditor/>
+                    <TuiEditor />
                   </Box>
                 </TabPanel>
 
                 <TabPanel value={"5"}>
                   <Box className="menu_name">Tanlangan Maqola</Box>
                   <Box className="menu_content">
-                    <TViewer text={`<h3>Hello</h3>`}/>
+                    <TViewer text={`<h3>Hello</h3>`} />
                   </Box>
                 </TabPanel>
 
