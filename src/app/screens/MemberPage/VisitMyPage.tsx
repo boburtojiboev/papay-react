@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -25,7 +25,7 @@ import { MySettings } from "./mySettings";
 import { TuiEditor } from "../../components/tuiEditor/TuiEditor";
 import TViewer from "../../components/tuiEditor/TViever";
 import { Member } from "../../../types/user";
-import { BoArticle } from "../../../types/boArticle";
+import { BoArticle, SearchMemberArticleObj } from "../../../types/boArticle";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
@@ -40,6 +40,12 @@ import {
   setChosenMemberBoArticles,
   setChosenSingleBoArticle,
 } from "../../screens/MemberPage/slice";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../lib/sweetAlert";
+import CommunityApiService from "../../apiServices/communityApiAervice";
+import MemberApiService from "../../apiServices/memberApiService";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -72,19 +78,63 @@ const chosenSingleBoArticleRetriever = createSelector(
 
 export function VisitMyPage(props: any) {
   //** INITIALIZATIONS **//
+  const { verifiedMemberdata } = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
     setChosenSingleBoArticle,
   } = actionDispatch(useDispatch());
   const { chosenMember } = useSelector(chosenMemberRetriever);
-  const { chosenMemberBoArticles } = useSelector(chosenMemberBoArticlesRetriever);
+  const { chosenMemberBoArticles } = useSelector(
+    chosenMemberBoArticlesRetriever
+  );
   const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
   const [value, setValue] = React.useState("1");
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+  const [memberAticleSearchObj, setMemberAticleSearchObj] =
+    useState<SearchMemberArticleObj>({ mb_id: "none", page: 1, limit: 3 });
+
+  useEffect(() => {
+    if (!localStorage.getItem("member_data")) {
+      sweetFailureProvider("Please login first!!!", true, true);
+    }
+
+    const communityService = new CommunityApiService();
+    communityService
+      .getMemberCommunityArticles(memberAticleSearchObj)
+      .then((data) => setChosenMemberBoArticles(data))
+      .catch((err) => console.log(err));
+
+    const memberService = new MemberApiService();
+    memberService
+      .getChosenMember(verifiedMemberdata?._id)
+      .then((data) => setChosenMember(data))
+      .catch((err) => console.log(err));
+  }, [memberAticleSearchObj, articlesRebuild]);
+
   //** HANDLERS **//
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+
+  const handlePaginationChange = (event: any, value: number) => {
+    memberAticleSearchObj.page = value;
+    setMemberAticleSearchObj({ ...memberAticleSearchObj });
+  };
+
+  const renderChosenArticleHandeler = async (art_id: string) => {
+    try {
+      const communityService = new CommunityApiService();
+      communityService
+        .getChosenArticle(art_id)
+        .then((data) => setChosenSingleBoArticle(data))
+        .catch((err) => console.log(err));
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   return (
     <div className="my_page">
       <Container maxWidth="lg" sx={{ mt: "50px", mb: "50px" }}>
@@ -95,7 +145,11 @@ export function VisitMyPage(props: any) {
                 <TabPanel value={"1"}>
                   <Box className="menu_name">Mening Maqolalarim</Box>
                   <Box className="menu_content">
-                    <MemberPosts />
+                    <MemberPosts
+                      chosenMemberBoArticles={chosenMemberBoArticles}
+                      renderChosenArticleHandeler={renderChosenArticleHandeler}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                     <Stack
                       sx={{ my: "40px" }}
                       direction={"row"}
@@ -116,6 +170,7 @@ export function VisitMyPage(props: any) {
                               color={"secondary"}
                             />
                           )}
+                          onChange={handlePaginationChange}
                         />
                       </Box>
                     </Stack>
