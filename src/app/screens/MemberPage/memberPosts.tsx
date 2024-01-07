@@ -16,12 +16,16 @@ import {
 
 export function MemberPosts(props: any) {
   /** INITIALIZATIONS **/
-  const { chosenMemberBoArticles, renderChosenArticleHandeler, setArticlesRebuild } = props;
+  const {
+    chosenMemberBoArticles,
+    renderChosenArticleHandeler,
+    setArticlesRebuild,
+  } = props;
 
   //**HANDLERS**//
   const targetLikeHandler = async (e: any) => {
     try {
-        e.stopPropagation();
+      e.stopPropagation();
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
 
       const memberService = new MemberApiService();
@@ -45,7 +49,11 @@ export function MemberPosts(props: any) {
           ? `${serverApi}/${article.art_image}`
           : "/community/default_articles.svg";
         return (
-          <Stack className="all_article_box" sx={{ cursor: "pointer" }}>
+          <Stack
+            className="all_article_box"
+            sx={{ cursor: "pointer" }}
+            onClick={() => renderChosenArticleHandeler(article?._id)}
+          >
             <Box
               className="all_article_img"
               sx={{ backgroundImage: `url(${image_path})` }}
