@@ -95,7 +95,7 @@ export function VisitMyPage(props: any) {
   const [followRebuild, setFollowRebuild] = useState<boolean>(false);
   const [memberAticleSearchObj, setMemberAticleSearchObj] =
     useState<SearchMemberArticleObj>({
-      mb_id: "none" || verifiedMemberData?.mb_id,
+      mb_id: "none",
       page: 1,
       limit: 3,
     });
@@ -210,7 +210,6 @@ export function VisitMyPage(props: any) {
                       mb_id={props.verifiedMemberData?._id}
                       followRebuild={followRebuild}
                       setFollowRebuild={setFollowRebuild}
-                      
                     />
                   </Box>
                 </TabPanel>
