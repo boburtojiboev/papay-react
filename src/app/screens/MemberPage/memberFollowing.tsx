@@ -19,6 +19,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { setMemberFollowings } from "../../screens/MemberPage/slice";
 import { serverApi } from "../../../lib/config";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { useHistory } from "react-router-dom";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -36,6 +37,7 @@ const memberFollowingsRetriever = createSelector(
 
 export function MemberFollowing(props: any) {
   /** INITIALIZATIONS **/
+  const history = useHistory();
   const { mb_id, followRebuild, setFollowRebuild } = props;
   const { setMemberFollowings } = actionDispatch(useDispatch());
   const { memberFollowings } = useSelector(memberFollowingsRetriever);
@@ -72,6 +74,11 @@ export function MemberFollowing(props: any) {
     }
   };
 
+  const visitMemberHandler = (mb_id: string) => {
+    history.push(`/member-page/other?mb_id=${mb_id}`);
+    // document.location.reload();
+  };
+
   return (
     <Stack>
       {memberFollowings.map((following: Following) => {
@@ -80,7 +87,13 @@ export function MemberFollowing(props: any) {
           : "/auth/default_user.svg";
         return (
           <Box className="follow_box">
-            <Avatar alt={""} src={image_url} sx={{ width: 89, height: 89 }} />
+            <Avatar
+              alt={""}
+              src={image_url}
+              sx={{ width: 89, height: 89 }}
+              style={{ cursor: "pointer" }}
+              onClick={() => visitMemberHandler(following?.follow_id)}
+            />
             <div
               style={{
                 width: "400px",
@@ -90,12 +103,20 @@ export function MemberFollowing(props: any) {
                 height: "85%",
               }}
             >
-              <span className="username_text">{following?.follow_member_data?.mb_type}</span>
-              <span className="name_text">{following?.follow_member_data?.mb_nick}</span>
+              <span className="username_text">
+                {following?.follow_member_data?.mb_type}
+              </span>
+              <span
+                className="name_text"
+                style={{ cursor: "pointer" }}
+                onClick={() => visitMemberHandler(following?.follow_id)}
+              >
+                {following?.follow_member_data?.mb_nick}
+              </span>
             </div>
             {props.actions_enabled && (
               <Button
-              onClick={(e) => unsubscribeHandler(e, following?.follow_id)}
+                onClick={(e) => unsubscribeHandler(e, following?.follow_id)}
                 variant="contained"
                 className="follow_cancel_btn"
                 startIcon={
@@ -103,7 +124,6 @@ export function MemberFollowing(props: any) {
                     src="/icons/follow_icon.svg"
                     alt=""
                     style={{ width: "40px", marginLeft: "16px" }}
-                    
                   />
                 }
               >
