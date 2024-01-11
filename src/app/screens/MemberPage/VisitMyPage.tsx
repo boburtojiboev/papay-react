@@ -254,6 +254,7 @@ export function VisitMyPage(props: any) {
                     <img
                       style={{ objectFit: "cover" }}
                       src={
+                        // verifiedMemberData?.mb_image ??
                         chosenMember?.mb_image
                           ? `${serverApi}/${chosenMember?.mb_image}`
                           : "/auth/default_user.svg"
