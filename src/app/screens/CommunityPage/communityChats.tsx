@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar, Box, Stack } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import "../../../css/community.css";
@@ -6,6 +6,9 @@ import "../../../css/community.css";
 // const [massagesList, setMassagesList] = useState({});
 
 export function CommunityChats() {
+  useEffect(() => {
+    console.log("printed");
+  }, [])
   return (
     <Stack className="chat_frame">
       <Box className="chat_top">Jonli Muloqot</Box>
