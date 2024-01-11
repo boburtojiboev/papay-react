@@ -78,8 +78,8 @@ export function OrdersPage(props: any) {
               </Box>
             </Box>
             <Stack className="order_main_content">
-              <PausedOrders setOrderRebuild={props.setOrderRebuild} />
-              <ProcessOrders setOrderRebuild={props.setOrderRebuild} />
+              <PausedOrders setOrderRebuild={props.setOrderRebuild} setValue={setValue} />
+              <ProcessOrders setOrderRebuild={props.setOrderRebuild} setValue={setValue} />
               <FinishedOrders setOrderRebuild={props.setOrderRebuild} />
             </Stack>
           </TabContext>
