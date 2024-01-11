@@ -34,6 +34,7 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -89,7 +90,7 @@ export function ChosenDish(props: any) {
   /** HANDLERS */
   const targetLikeProduct = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const memberService = new MemberApiService(),
         like_result: any = await memberService.memberLikeTarget({
